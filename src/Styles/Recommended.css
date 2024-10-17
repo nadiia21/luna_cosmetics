@@ -1,0 +1,42 @@
+.recommended {
+	padding: 85px 125px;
+}
+
+.recommendedTitle {
+	margin-bottom: 45px;
+}
+
+.recommendedList {
+	display: flex;
+	flex-direction: row;
+	gap: 70px;
+	justify-content: center;
+}
+
+.recommendedImage {
+	width: 290px;
+}
+
+.recommendedItem {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	padding-bottom: 15px;
+	background-color: #d9d9d9;
+	border-radius: 4px;
+	align-items: center;
+}
+
+.recommendedName {
+	font-size: 18px;
+	font-weight: 700;
+	text-align: center;
+	margin-top: 20px;
+	color: #3b3636;
+}
+
+.addShopIcon {
+	margin-top: 22px;
+	display: block;
+	cursor: pointer;
+}

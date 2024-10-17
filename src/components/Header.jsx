@@ -1,16 +1,13 @@
 import React from 'react';
+import styles from '../Styles/Header.css';
+import Nav from './Nav.jsx';
+
 const Header = () => {
 	return (
-		<header>
-			<h2>Site Header</h2>
-			<nav>
-				<ul>
-					<li>Home</li>
-					<li>About</li>
-					<li>Contact</li>
-				</ul>
-			</nav>
+		<header className={styles.header}>
+			<Nav />
 		</header>
 	);
 };
+
 export default Header;
