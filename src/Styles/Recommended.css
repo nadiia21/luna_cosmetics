@@ -39,4 +39,9 @@
 	margin-top: 22px;
 	display: block;
 	cursor: pointer;
+	transition: transform ease 0.3s;
+}
+
+.addShopIcon:hover {
+	transform: scale(1.1);
 }

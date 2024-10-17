@@ -57,6 +57,9 @@ const Catalog = () => {
 		},
 	];
 
+	const totalPages = 4;
+	const currentPage = 1;
+
 	return (
 		<div className={styles.catalog}>
 			<div className={styles.catalogGrid}>
@@ -79,6 +82,16 @@ const Catalog = () => {
 								/>
 							</div>
 						</div>
+					</div>
+				))}
+			</div>
+			<div className={styles.pagination}>
+				{Array.from({ length: totalPages }, (_, index) => (
+					<div
+						key={index}
+						className={`${styles.paginationSquare} ${currentPage === index + 1 ? styles.active : ''}`}
+					>
+						{index + 1}
 					</div>
 				))}
 			</div>
