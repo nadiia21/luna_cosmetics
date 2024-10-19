@@ -1,0 +1,101 @@
+.catalog {
+	padding: 110px 120px 60px;
+}
+
+.catalogGrid {
+	display: grid;
+	grid-template-columns: repeat(3, 1fr);
+	column-gap: 20px;
+	row-gap: 50px;
+}
+
+.catalogItem {
+	background-color: #d9d9d9;
+	border-radius: 4px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+.catalogImage {
+	width: 100%;
+}
+
+.catalogName {
+	font-size: 18px;
+	font-weight: 700;
+	color: #3b3636;
+	text-align: left;
+	margin: 0;
+}
+
+.catalogText {
+	font-size: 16px;
+	font-weight: 400;
+	margin: 0;
+	margin-top: 18px;
+}
+
+.catalogBottom {
+	display: flex;
+	color: #3b3636;
+	flex-direction: column;
+	padding: 20px;
+	height: 100%;
+	justify-content: space-between;
+}
+
+.catalogBottomAdd {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	margin-top: 15px;
+	align-items: center;
+}
+
+.catalogPrice {
+	font-weight: 700;
+	font-size: 16px;
+	margin: 0;
+}
+
+.pagination {
+	display: flex;
+	justify-content: center;
+	gap: 20px;
+	margin-top: 55px;
+}
+
+.addShopIcon {
+	cursor: pointer;
+	transition: transform ease 0.3s;
+}
+
+.addShopIcon:hover {
+	transform: scale(1.1);
+}
+
+.paginationSquare {
+	width: 40px;
+	height: 40px;
+	background-color: none;
+	border: 2px solid #3b3636;
+	cursor: pointer;
+	transition: background-color 0.3s;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	font-size: 20px;
+	font-weight: 700;
+	color: #3b3636;
+	transition: font-size ease 0.3s;
+}
+
+.paginationSquare.active {
+	font-size: 25px;
+	transform: scale(1.1);
+}
+
+.paginationSquare:hover {
+	font-size: 25px;
+}
