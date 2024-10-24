@@ -1,0 +1,8 @@
+.header {
+	background-image: url(../Images/bg.png);
+	background-size: cover;
+	background-repeat: no-repeat;
+	background-position: center;
+	height: 750px;
+	padding: 0;
+}

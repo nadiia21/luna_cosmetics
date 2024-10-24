@@ -29,10 +29,23 @@ module.exports = (env, argv) => {
 					use: 'babel-loader',
 				},
 				{
+					test: /\.(png|jpe?g|gif|svg)$/i,
+					type: 'asset/resource',
+				},
+				{
 					test: /\.css$/,
 					use: [
 						isProduction ? MiniCssExtractPlugin.loader : 'style-loader',
-						'css-loader',
+						{
+							loader: 'css-loader',
+							options: {
+								modules: {
+									mode: 'local',
+									localIdentName: '[name]__[local]___[hash:base64:5]',
+									namedExport: false,
+								},
+							},
+						},
 					],
 				},
 			],
