@@ -1,5 +1,5 @@
 .recommended {
-	padding: 85px 125px;
+	margin: 80px 125px;
 }
 
 .recommendedTitle {
@@ -9,12 +9,9 @@
 .recommendedList {
 	display: flex;
 	flex-direction: row;
-	gap: 70px;
-	justify-content: center;
-}
-
-.recommendedImage {
-	width: 290px;
+	gap: 20px;
+	justify-content: space-between;
+	flex-wrap: wrap;
 }
 
 .recommendedItem {
@@ -25,6 +22,14 @@
 	background-color: #d9d9d9;
 	border-radius: 4px;
 	align-items: center;
+	flex: 1 1 30%;
+	max-width: 290px;
+}
+
+.recommendedImage {
+	width: 100%;
+	height: auto;
+	object-fit: cover;
 }
 
 .recommendedName {
@@ -44,4 +49,45 @@
 
 .addShopIcon:hover {
 	transform: scale(1.1);
+}
+
+@media (min-width: 641px) and (max-width: 1024px) {
+	.recommendedList {
+		flex-direction: column;
+		align-items: center;
+	}
+
+	.recommendedItem {
+		min-width: 400px;
+	}
+
+	.recommendedTitle {
+		text-align: center;
+		margin-bottom: 45px;
+	}
+
+	.recommended {
+		margin: 70px;
+	}
+}
+
+@media (max-width: 640px) {
+	.recommendedItem {
+		min-width: 250px;
+	}
+
+	.recommendedList {
+		flex-direction: column;
+		align-items: center;
+	}
+
+	.recommendedTitle {
+		margin-bottom: 35px;
+		font-size: 35px;
+		text-align: center;
+	}
+
+	.recommended {
+		margin: 40px;
+	}
 }

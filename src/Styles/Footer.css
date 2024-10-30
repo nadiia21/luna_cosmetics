@@ -6,13 +6,14 @@
 .contactsContent {
 	display: grid;
 	grid-template-columns: repeat(12, 1fr);
+	gap: 40px;
 }
 
 .contactsForm {
 	display: flex;
 	flex-direction: column;
 	gap: 16px;
-	grid-column: 1 / 6;
+	grid-column: 1 / 7;
 }
 
 .contactsItems {
@@ -73,7 +74,7 @@
 	display: flex;
 	flex-direction: column;
 	gap: 24px;
-	grid-column: 9 / 12;
+	grid-column: 9 / -1;
 }
 
 .block {
@@ -101,4 +102,63 @@
 	text-decoration: none;
 	color: #3b3636;
 	cursor: pointer;
+}
+
+@media (min-width: 641px) and (max-width: 1024px) {
+	.contactsContent {
+		grid-template-columns: repeat(6, 1fr);
+	}
+
+	.contactsForm {
+		gap: 16px;
+		grid-column: 1 / -1;
+	}
+
+	.contactsBlocks {
+		gap: 24px;
+		grid-column: 1 / 4;
+	}
+
+	.footerTitle {
+		text-align: center;
+		margin-bottom: 45px;
+	}
+
+	.footer {
+		padding: 70px;
+	}
+}
+
+@media (max-width: 640px) {
+	.contactsContent {
+		grid-template-columns: repeat(4, 1fr);
+	}
+
+	.contactsForm {
+		gap: 16px;
+		grid-column: 1 / -1;
+	}
+
+	.contactsBlocks {
+		gap: 24px;
+		grid-column: 1 / -1;
+	}
+
+	.footerTitle {
+		text-align: center;
+		margin-bottom: 35px;
+		font-size: 35px;
+	}
+
+	.footer {
+		padding: 40px;
+	}
+
+	.blockTitle {
+		font-size: 15px;
+	}
+
+	.blockText {
+		font-size: 14px;
+	}
 }

@@ -6,3 +6,15 @@
 	height: 750px;
 	padding: 0;
 }
+
+@media (min-width: 641px) and (max-width: 1024px) {
+	.header {
+		height: 700px;
+	}
+}
+
+@media (max-width: 640px) {
+	.header {
+		height: 670px;
+	}
+}
