@@ -336,5 +336,19 @@ select:hover {
     padding: 50px;
     width: 500px;
   }
+
+  .modalContent {
+    padding: 30px;
+    width: 300px;
+  }
+
+  .orderForm {
+    gap: 10px;
+  }
+
+  .orderTitle {
+    margin-bottom: 25px;
+    font-size: 25px;
+  }
   
 }
