@@ -1,5 +1,5 @@
 .catalog {
-	padding: 110px 120px 60px;
+	padding: 110px 60px;
 }
 
 .catalogGrid {
@@ -98,4 +98,27 @@
 
 .paginationSquare:hover {
 	font-size: 25px;
+}
+
+
+@media (min-width: 641px) and (max-width: 1024px) {
+	.catalogGrid {
+    grid-template-columns: repeat(2, 1fr);
+    column-gap: 20px;
+    row-gap: 30px;
+  }
+
+  .catalog {
+    padding: 60px;
+  }
+}
+
+@media (max-width: 640px) {
+	.catalogGrid {
+    grid-template-columns: repeat(1, 1fr);
+  }
+
+  .catalog {
+    padding: 60px;
+  }
 }

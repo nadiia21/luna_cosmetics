@@ -1,0 +1,196 @@
+{
+  "products": [
+    {
+      "id": 1,
+      "name": "Revitalizing Hair Mist",
+      "text": "Not only does this product protect against thermal effects, but it also provides antioxidant protection against harmful external factors such as UV radiation and air pollution.",
+      "price": "$18.00",
+      "image": "product1.png",
+      "icon": "add-to-shop.svg"
+    },
+    {
+      "id": 2,
+      "name": "Soothing Face Cream",
+      "text": "If oily facial skin annoys you and bothers you, then just choose this product and forget about your problems. The face will look fantastic and say thank you.",
+      "price": "$21.00",
+      "image": "product2.png",
+      "icon": "add-to-shop.svg"
+    },
+    {
+      "id": 3,
+      "name": "Nourishing Face Mask",
+      "text": "If your facial skin is dry and damaged, then these products will definitely help you. The cream deeply nourishes the skin, and the mask will give elasticity.",
+      "price": "$40.00",
+      "image": "product3.png",
+      "icon": "add-to-shop.svg"
+    },
+    {
+      "id": 4,
+      "name": "Thermal Protection Spray",
+      "text": "Not only does this product protect against thermal effects, but it also provides antioxidant protection against harmful external factors such as UV radiation and air pollution.",
+      "price": "$19.00",
+      "image": "product4.png",
+      "icon": "add-to-shop.svg"
+    },
+    {
+      "id": 5,
+      "name": "Control Mattifying Cream",
+      "text": "If oily facial skin annoys you and bothers you, then just choose this product and forget about your problems. The face will look fantastic and say thank you.",
+      "price": "$23.50",
+      "image": "product5.png",
+      "icon": "add-to-shop.svg"
+    },
+    {
+      "id": 6,
+      "name": "Hydrating Night Mask",
+      "text": "If your facial skin is dry and damaged, then these products will definitely help you. The cream deeply nourishes the skin, and the mask will give elasticity.",
+      "price": "$41.00",
+      "image": "product6.png",
+      "icon": "add-to-shop.svg"
+    },
+    {
+      "id": 7,
+      "name": "Ultra Nourishing Hair Spray",
+      "text": "Not only does this product protect against thermal effects, but it also provides antioxidant protection against harmful external factors such as UV radiation and air pollution.",
+      "price": "$17.00",
+      "image": "product5.png",
+      "icon": "add-to-shop.svg"
+    },
+    {
+      "id": 8,
+      "name": "Deep Hydration Face Cream",
+      "text": "If oily facial skin annoys you and bothers you, then just choose this product and forget about your problems. The face will look fantastic and say thank you.",
+      "price": "$24.00",
+      "image": "product9.png",
+      "icon": "add-to-shop.svg"
+    },
+    {
+      "id": 9,
+      "name": "Elasticity Boosting Mask",
+      "text": "If your facial skin is dry and damaged, then these products will definitely help you. The cream deeply nourishes the skin, and the mask will give elasticity.",
+      "price": "$38.00",
+      "image": "product6.png",
+      "icon": "add-to-shop.svg"
+    },
+    {
+      "id": 10,
+      "name": "Daily Hair Repair Spray",
+      "text": "Not only does this product protect against thermal effects, but it also provides antioxidant protection against harmful external factors such as UV radiation and air pollution.",
+      "price": "$16.50",
+      "image": "product4.png",
+      "icon": "add-to-shop.svg"
+    },
+    {
+      "id": 11,
+      "name": "Oil Control Face Cream",
+      "text": "If oily facial skin annoys you and bothers you, then just choose this product and forget about your problems. The face will look fantastic and say thank you.",
+      "price": "$22.50",
+      "image": "product2.png",
+      "icon": "add-to-shop.svg"
+    },
+    {
+      "id": 12,
+      "name": "Intensive Hydrating Cream",
+      "text": "If your facial skin is dry and damaged, then these products will definitely help you. The cream deeply nourishes the skin, and the mask will give elasticity.",
+      "price": "$39.50",
+      "image": "product7.png",
+      "icon": "add-to-shop.svg"
+    },
+    {
+      "id": 13,
+      "name": "Luxurious Hair Oil",
+      "text": "Not only does this product protect against thermal effects, but it also provides antioxidant protection against harmful external factors such as UV radiation and air pollution.",
+      "price": "$29.00",
+      "image": "product4.png",
+      "icon": "add-to-shop.svg"
+    },
+    {
+      "id": 14,
+      "name": "Radiance Face Serum",
+      "text": "If oily facial skin annoys you and bothers you, then just choose this product and forget about your problems. The face will look fantastic and say thank you.",
+      "price": "$31.00",
+      "image": "product8.png",
+      "icon": "add-to-shop.svg"
+    },
+    {
+      "id": 15,
+      "name": "Rejuvenating Eye Cream",
+      "text": "If your facial skin is dry and damaged, then these products will definitely help you. The cream deeply nourishes the skin, and the mask will give elasticity.",
+      "price": "$35.00",
+      "image": "product9.png",
+      "icon": "add-to-shop.svg"
+    },
+    {
+      "id": 16,
+      "name": "Color Protect Shampoo",
+      "text": "Not only does this product protect against thermal effects, but it also provides antioxidant protection against harmful external factors such as UV radiation and air pollution.",
+      "price": "$20.00",
+      "image": "product7.png",
+      "icon": "add-to-shop.svg"
+    },
+    {
+      "id": 17,
+      "name": "Gentle Exfoliating Scrub",
+      "text": "If oily facial skin annoys you and bothers you, then just choose this product and forget about your problems. The face will look fantastic and say thank you.",
+      "price": "$26.00",
+      "image": "product3.png",
+      "icon": "add-to-shop.svg"
+    },
+    {
+      "id": 18,
+      "name": "Brightening Face Peel",
+      "text": "If your facial skin is dry and damaged, then these products will definitely help you. The cream deeply nourishes the skin, and the mask will give elasticity.",
+      "price": "$34.00",
+      "image": "product5.png",
+      "icon": "add-to-shop.svg"
+    },
+    {
+      "id": 19,
+      "name": "Silkening Conditioner",
+      "text": "Not only does this product protect against thermal effects, but it also provides antioxidant protection against harmful external factors such as UV radiation and air pollution.",
+      "price": "$25.00",
+      "image": "product6.png",
+      "icon": "add-to-shop.svg"
+    },
+    {
+      "id": 20,
+      "name": "Cooling Gel Mask",
+      "text": "If oily facial skin annoys you and bothers you, then just choose this product and forget about your problems. The face will look fantastic and say thank you.",
+      "price": "$30.00",
+      "image": "product5.png",
+      "icon": "add-to-shop.svg"
+    },
+    {
+      "id": 21,
+      "name": "Firming Night Cream",
+      "text": "If your facial skin is dry and damaged, then these products will definitely help you. The cream deeply nourishes the skin, and the mask will give elasticity.",
+      "price": "$36.00",
+      "image": "product4.png",
+      "icon": "add-to-shop.svg"
+    },
+    {
+      "id": 22,
+      "name": "Moisture Lock Spray",
+      "text": "Not only does this product protect against thermal effects, but it also provides antioxidant protection against harmful external factors such as UV radiation and air pollution.",
+      "price": "$27.00",
+      "image": "product3.png",
+      "icon": "add-to-shop.svg"
+    },
+    {
+      "id": 23,
+      "name": "Anti-Aging Serum",
+      "text": "If oily facial skin annoys you and bothers you, then just choose this product and forget about your problems. The face will look fantastic and say thank you.",
+      "price": "$32.00",
+      "image": "product2.png",
+      "icon": "add-to-shop.svg"
+    },
+    {
+      "id": 24,
+      "name": "Clarifying Facial Toner",
+      "text": "This toner is designed to refine and clarify the skin, removing impurities and excess oil, leaving your face feeling refreshed and revitalized.",
+      "price": "$28.00",
+      "image": "product1.png",
+      "icon": "add-to-shop.svg"
+    }
+  ]
+}

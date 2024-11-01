@@ -18,7 +18,7 @@ module.exports = (env, argv) => {
 		devtool: isProduction ? 'source-map' : 'inline-source-map',
 		devServer: {
 			static: path.resolve(__dirname, 'dist'),
-			port: 3000,
+			port: 4000,
 			open: true,
 		},
 		module: {
