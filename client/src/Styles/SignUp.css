@@ -54,3 +54,24 @@
 	font-weight: 700;
 	color: #0d0c0c;
 }
+
+@media (max-width: 640px) {
+  .signupForm {
+    width: 240px;
+  }
+
+  .signupTitle {
+    margin-bottom: 45px;
+    font-size: 35px;
+  }
+
+  .loginPrompt {
+    margin-top: 30px;
+    font-size: 15px;
+  }
+
+  .signupButton {
+    font-size: 17px;
+    margin-top: 55px;
+  } 
+}

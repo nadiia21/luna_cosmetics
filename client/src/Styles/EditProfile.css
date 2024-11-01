@@ -72,3 +72,18 @@
 	padding: 5px;
 	margin-top: 35px;
 }
+
+@media (max-width: 640px) {
+  .editProfileForm {
+    width: 240px;
+  }
+
+  .editProfileTitle {
+    font-size: 35px;
+  }
+
+  .editProfileButton {
+    font-size: 17px;
+    margin-top: 55px;
+  } 
+}
