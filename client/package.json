@@ -8,7 +8,7 @@
 		"build": "webpack --mode production",
 		"lint": "eslint . --fix --max-warnings=0",
 		"format": "prettier . --write",
-		"prepare": "husky install"
+		"prepare": "cd client && husky install"
 	},
 	"author": "Nadiia21",
 	"license": "ISC",
