@@ -19,6 +19,10 @@ app.use('/api/posts', postRoute);
 const productRoute = require('./routes/products');
 app.use('/products', productRoute);
 
+const cartRoute = require('./routes/cart');
+app.use('/api/cart', cartRoute);
+
+
 app.get('/', (req, res) => {
   res.send('Hello World');
 });

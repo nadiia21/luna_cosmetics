@@ -192,6 +192,13 @@ select:hover {
 	background-color: #fff;
 }
 
+.emptyCartMessage {
+	font-size: 40px;
+	color: #3b3636;
+	margin-top: 50px;
+}
+
+
 @media (max-width: 1180px) {
 
   .shop {
@@ -205,10 +212,6 @@ select:hover {
   .orderSummary {
     gap: 45px;
     grid-column: 3 / 11;
-  }
-
-  .productItem {
-    justify-content: center;
   }
 }
 
@@ -225,10 +228,6 @@ select:hover {
     gap: 25px;
     padding: 20px;
     grid-column: 4 / 10;
-  }
-
-  .productItem {
-    justify-content: center;
   }
 
   .productItem {

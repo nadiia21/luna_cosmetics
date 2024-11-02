@@ -91,6 +91,19 @@
 	transition: font-size ease 0.3s;
 }
 
+.toast {
+	position: fixed;
+	top: 20px;
+	right: 20px;
+	background-color: #3b3636;
+	color: white;
+	padding: 10px 20px;
+	border-radius: 5px;
+	z-index: 1000;
+	transition: opacity 0.5s;
+}
+
+
 .paginationSquare.active {
 	font-size: 25px;
 	transform: scale(1.1);

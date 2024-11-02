@@ -6,6 +6,8 @@ const Catalog = () => {
 	const [currentPage, setCurrentPage] = useState(1);
 	const [totalProducts, setTotalProducts] = useState(0);
 	const productsPerPage = 6;
+	const [isToastVisible, setIsToastVisible] = useState(false);
+	const [toastMessage, setToastMessage] = useState('');
 
 	const fetchProducts = async () => {
 		try {
@@ -23,6 +25,36 @@ const Catalog = () => {
 		}
 	};
 
+	const handleAddToCart = async (product) => {
+		try {
+			const response = await fetch('http://localhost:3000/api/cart/add', {
+				method: 'POST',
+				headers: {
+					'Content-Type': 'application/json',
+				},
+				body: JSON.stringify({
+					productId: product._id,
+					name: product.name,
+					price: product.price,
+					image: product.image,
+				}),
+			});
+
+			const data = await response.json();
+			if (response.ok) {
+				setToastMessage(`Додано ${product.name} до кошика!`);
+				setIsToastVisible(true);
+				setTimeout(() => {
+					setIsToastVisible(false);
+				}, 3000);
+			} else {
+				console.error('Помилка при додаванні до кошика:', data.message);
+			}
+		} catch (error) {
+			console.error('Помилка:', error);
+		}
+	};
+
 	useEffect(() => {
 		fetchProducts();
 	}, [currentPage]);
@@ -35,6 +67,7 @@ const Catalog = () => {
 
 	return (
 		<div className={styles.catalog}>
+			{isToastVisible && <div className={styles.toast}>{toastMessage}</div>}
 			<div className={styles.catalogGrid}>
 				{products.map((product) => (
 					<div key={product._id} className={styles.catalogItem}>
@@ -52,6 +85,7 @@ const Catalog = () => {
 									src={require(`../Images/${product.icon}`)}
 									alt="Add to shop icon"
 									className={styles.addShopIcon}
+									onClick={() => handleAddToCart(product)}
 								/>
 							</div>
 						</div>

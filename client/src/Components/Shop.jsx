@@ -1,26 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import styles from '../Styles/Shop.css';
-import product2 from '../Images/product1.png';
-import product1 from '../Images/product2.png';
-
-const fetchProducts = () => {
-	return [
-		{
-			id: 1,
-			name: 'Mattifying face cream',
-			price: 20.0,
-			quantity: 1,
-			image: product1,
-		},
-		{
-			id: 2,
-			name: 'Restorative hair spray',
-			price: 16.0,
-			quantity: 1,
-			image: product2,
-		},
-	];
-};
 
 const Modal = ({ show, onClose, children }) => {
 	if (!show) {
@@ -30,108 +9,172 @@ const Modal = ({ show, onClose, children }) => {
 	return (
 		<div className={styles.modalOverlay}>
 			<div className={styles.modalContent}>
+				<button className={styles.closeButton} onClick={onClose}>
+					&times;
+				</button>
 				{children}
-				<button onClick={onClose} className={styles.closeButton}></button>
 			</div>
 		</div>
 	);
 };
 
 const Shop = () => {
-	const [products, setProducts] = useState([]);
+	const [cart, setCart] = useState([]);
 	const [showOrderForm, setShowOrderForm] = useState(false);
+	const [selectedProduct, setSelectedProduct] = useState(null);
+
+	const fetchCart = async () => {
+		try {
+			const response = await fetch('http://localhost:3000/api/cart');
+			if (!response.ok) {
+				throw new Error('Network response was not ok');
+			}
+			const data = await response.json();
+			const updatedCart = data.map((item) => ({
+				...item,
+				quantity: item.quantity || 1,
+			}));
+			setCart(updatedCart);
+		} catch (error) {
+			console.error('Error fetching cart:', error);
+		}
+	};
 
 	useEffect(() => {
-		const loadedProducts = fetchProducts();
-		setProducts(loadedProducts);
+		fetchCart();
 	}, []);
 
-	const handleQuantityChange = (id, change) => {
-		setProducts((prevProducts) =>
-			prevProducts.map((product) =>
-				product.id === id
-					? { ...product, quantity: Math.max(1, product.quantity + change) }
-					: product
-			)
+	const handleQuantityChange = (productId, change) => {
+		setCart((prevCart) =>
+			prevCart
+				.map((item) => {
+					if (item.productId === productId) {
+						const newQuantity = item.quantity + change;
+						if (newQuantity <= 0) {
+							return null;
+						}
+						return { ...item, quantity: newQuantity };
+					}
+					return item;
+				})
+				.filter(Boolean)
 		);
 	};
 
 	const calculateTotal = () => {
-		return products
-			.reduce((total, product) => total + product.price * product.quantity, 0)
+		return cart
+			.reduce((total, item) => {
+				const priceValue = parseFloat(item.price.replace(/[^0-9.-]+/g, ''));
+				return total + priceValue * (item.quantity || 0);
+			}, 0)
 			.toFixed(2);
 	};
 
-	const handleMakeOrder = () => {
+	const handleAddToCart = (item) => {
+		setCart((prevCart) => {
+			const existingProduct = prevCart.find(
+				(product) => product.productId === item.productId
+			);
+			if (existingProduct) {
+				return prevCart.map((product) =>
+					product.productId === item.productId
+						? { ...product, quantity: product.quantity + 1 }
+						: product
+				);
+			} else {
+				return [
+					...prevCart,
+					{
+						productId: item.productId,
+						name: item.name,
+						price: item.price,
+						image: item.image,
+						quantity: 1,
+					},
+				];
+			}
+		});
+	};
+
+	const handleMakeOrder = (product) => {
+		const selectedItem = cart.find(
+			(item) => item.productId === product.productId
+		);
+		setSelectedProduct(selectedItem);
 		setShowOrderForm(true);
 	};
 
 	const handleCloseForm = () => {
 		setShowOrderForm(false);
+		setSelectedProduct(null);
 	};
 
 	const handleSubmit = (event) => {
 		event.preventDefault();
-
 		const formData = new FormData(event.target);
 		const data = Object.fromEntries(formData.entries());
 		console.log('Form submitted:', data);
-
 		handleCloseForm();
 	};
 
 	return (
 		<div className={styles.shop}>
 			<div className={styles.productList}>
-				{products.map((product) => (
-					<div className={styles.productItem} key={product.id}>
-						<img
-							className={styles.productImage}
-							src={product.image}
-							alt={product.name}
-						/>
-						<div className={styles.productDetails}>
-							<div className={styles.productName}>{product.name}</div>
-							<div className={styles.quantityControl}>
-								<button
-									className={styles.quantityButton}
-									onClick={() => handleQuantityChange(product.id, -1)}
-								>
-									-
-								</button>
-								<input
-									type="number"
-									className={styles.quantityInput}
-									value={product.quantity}
-									readOnly
+				{cart.length === 0 ? (
+					<p className={styles.emptyCartMessage}>The basket is empty!</p>
+				) : (
+					cart.map((item) => (
+						<div className={styles.productItem} key={item.productId}>
+							{item.image ? (
+								<img
+									className={styles.productImage}
+									src={require(`../Images/${item.image}`)}
+									alt={item.name}
 								/>
-								<button
-									className={styles.quantityButton}
-									onClick={() => handleQuantityChange(product.id, 1)}
-								>
-									+
-								</button>
-							</div>
-							<div className={styles.productPrice}>
-								{(product.price * product.quantity).toFixed(2)} $
+							) : (
+								<p>Image not available</p>
+							)}
+							<div className={styles.productDetails}>
+								<div className={styles.productName}>{item.name}</div>
+								<div className={styles.quantityControl}>
+									<button
+										className={styles.quantityButton}
+										onClick={() => handleQuantityChange(item.productId, -1)}
+									>
+										-
+									</button>
+									<input
+										type="number"
+										className={styles.quantityInput}
+										value={item.quantity}
+										readOnly
+									/>
+									<button
+										className={styles.quantityButton}
+										onClick={() => handleQuantityChange(item.productId, 1)}
+									>
+										+
+									</button>
+								</div>
+								<div className={styles.productPrice}>
+									{`${(parseFloat(item.price.replace(/[^0-9.-]+/g, '')) * item.quantity).toFixed(2)} $`}
+								</div>
 							</div>
 						</div>
+					))
+				)}
+			</div>
+			{cart.length > 0 && (
+				<div className={styles.orderSummary}>
+					<div className={styles.totalAmount}>
+						Total amount: {calculateTotal()} $
 					</div>
-				))}
-			</div>
-			<div className={styles.orderSummary}>
-				<div className={styles.totalAmount}>
-					Total amount: {calculateTotal()} $
+					<button className={styles.makeOrderButton} onClick={handleMakeOrder}>
+						Make an order
+					</button>
 				</div>
-				<button className={styles.makeOrderButton} onClick={handleMakeOrder}>
-					Make an order
-				</button>
-			</div>
-
+			)}
 			<Modal show={showOrderForm} onClose={handleCloseForm}>
-				<button className={styles.closeButton} onClick={handleCloseForm}>
-					&times;
-				</button>
 				<h2 className={styles.orderTitle}>Enter the data</h2>
 				<form className={styles.orderForm} onSubmit={handleSubmit}>
 					<input type="text" placeholder="Full Name" required />
