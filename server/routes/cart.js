@@ -20,4 +20,9 @@ router.get('/', (req, res) => {
 	res.status(200).json(cart);
 });
 
+router.delete('/clear', (req, res) => {
+	cart = [];
+	res.status(200).json({ message: 'Кошик очищено' });
+});
+
 module.exports = router;

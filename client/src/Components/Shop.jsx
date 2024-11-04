@@ -22,6 +22,7 @@ const Shop = () => {
 	const [cart, setCart] = useState([]);
 	const [showOrderForm, setShowOrderForm] = useState(false);
 	const [selectedProduct, setSelectedProduct] = useState(null);
+	const [toastMessage, setToastMessage] = useState('');
 
 	const fetchCart = async () => {
 		try {
@@ -109,12 +110,44 @@ const Shop = () => {
 		setSelectedProduct(null);
 	};
 
-	const handleSubmit = (event) => {
+	const handleSubmit = async (event) => {
 		event.preventDefault();
+
 		const formData = new FormData(event.target);
-		const data = Object.fromEntries(formData.entries());
-		console.log('Form submitted:', data);
-		handleCloseForm();
+		const data = {
+			fullName: formData.get('fullName'),
+			email: formData.get('email'),
+			phone: formData.get('phone'),
+			payment: formData.get('payment'),
+			address: formData.get('address'),
+			items: cart,
+		};
+
+		try {
+			const response = await fetch('http://localhost:3000/api/orders', {
+				method: 'POST',
+				headers: {
+					'Content-Type': 'application/json',
+				},
+				body: JSON.stringify(data),
+			});
+
+			if (response.ok) {
+				const savedOrder = await response.json();
+				console.log('Order saved:', savedOrder);
+				await fetch('http://localhost:3000/api/cart/clear', {
+					method: 'DELETE',
+				});
+				setCart([]);
+				handleCloseForm();
+				setToastMessage('Your order has been accepted!');
+				setTimeout(() => setToastMessage(''), 3000);
+			} else {
+				console.error('Failed to save order');
+			}
+		} catch (error) {
+			console.error('Error:', error);
+		}
 	};
 
 	return (
@@ -177,16 +210,17 @@ const Shop = () => {
 			<Modal show={showOrderForm} onClose={handleCloseForm}>
 				<h2 className={styles.orderTitle}>Enter the data</h2>
 				<form className={styles.orderForm} onSubmit={handleSubmit}>
-					<input type="text" placeholder="Full Name" required />
-					<input type="email" placeholder="Email" required />
+					<input type="text" name="fullName" placeholder="Full Name" required />
+					<input type="email" name="email" placeholder="Email" required />
 					<input
 						type="tel"
+						name="phone"
 						placeholder="Phone"
 						required
 						pattern="\d{10}"
 						title="Phone number must be 10 digits"
 					/>
-					<select required>
+					<select name="payment" required>
 						<option value="" disabled selected style={{ display: 'none' }}>
 							Payment
 						</option>
@@ -199,10 +233,11 @@ const Shop = () => {
 						</option>
 						<option value="cash">Cash</option>
 					</select>
-					<input type="text" placeholder="Address" required />
+					<input type="text" name="address" placeholder="Address" required />
 					<button type="submit">Send</button>
 				</form>
 			</Modal>
+			{toastMessage && <div className={styles.toast}>{toastMessage}</div>}
 		</div>
 	);
 };
