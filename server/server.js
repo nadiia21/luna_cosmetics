@@ -28,6 +28,9 @@ app.use('/api/orders', orderRoute);
 const contactRoute = require('./routes/contacts');
 app.use('/api/contacts', contactRoute);
 
+const authRoute = require('./routes/auth');
+app.use('/api/auth', authRoute);
+
 app.listen(PORT, () => {
   console.log(`Server is running on http://localhost:${PORT}`);
 });

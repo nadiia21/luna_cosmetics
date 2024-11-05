@@ -1,13 +1,18 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import styles from '../Styles/Nav.css';
 import shopIcon from '../Images/icon-shop.svg';
 import userIcon from '../Images/icon-user.svg';
 import logo from '../Images/logo.png';
 
 const Nav = () => {
+	const location = useLocation();
+	const registrationSuccess = location.state?.registrationSuccess;
 	const [isOpen, setIsOpen] = useState(false);
 	const [isMenuOpen, setIsMenuOpen] = useState(false);
+	const [isAuthenticated, setIsAuthenticated] = useState(() => {
+		return localStorage.getItem('isAuthenticated') === 'true';
+	});
 
 	const handleMouseEnter = () => {
 		setIsOpen(true);
@@ -19,6 +24,18 @@ const Nav = () => {
 
 	const toggleMenu = () => {
 		setIsMenuOpen((prev) => !prev);
+	};
+
+	useEffect(() => {
+		if (registrationSuccess) {
+			setIsAuthenticated(true);
+			localStorage.setItem('isAuthenticated', 'true');
+		}
+	}, [registrationSuccess]);
+
+	const handleLogout = () => {
+		setIsAuthenticated(false);
+		localStorage.removeItem('isAuthenticated');
 	};
 
 	useEffect(() => {
@@ -71,18 +88,30 @@ const Nav = () => {
 						<img src={userIcon} alt="User Icon" className={styles.listIcon} />
 						<div className={`${styles.userMenu} ${isOpen ? styles.show : ''}`}>
 							<ul>
-								<li>
-									<Link to="/signUp">Sign Up</Link>
-								</li>
-								<li>
-									<Link to="/signIn">Sign In</Link>
-								</li>
-								<li>
-									<Link to="/edit">Edit profile</Link>
-								</li>
-								<li>
-									<Link to="/exit">Exit</Link>
-								</li>
+								{!isAuthenticated ? (
+									<>
+										<li>
+											<Link to="/signUp">Sign Up</Link>
+										</li>
+										<li>
+											<Link to="/signIn">Sign In</Link>
+										</li>
+									</>
+								) : (
+									<>
+										<li>
+											<Link to="/edit">Edit profile</Link>
+										</li>
+										<li>
+											<button
+												onClick={handleLogout}
+												className={styles.exitButton}
+											>
+												Exit
+											</button>
+										</li>
+									</>
+								)}
 							</ul>
 						</div>
 					</div>

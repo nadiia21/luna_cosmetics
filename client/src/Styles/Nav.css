@@ -92,15 +92,28 @@
 }
 
 .userMenu li {
-	padding: 4px 25px;
+	padding-block: 4px;
+  width: 135px;
 	text-align: center;
 }
 
 .userMenu li a {
+  display: block;
 	text-decoration: none;
 	color: #3b3636;
 	font-size: 16px;
 	font-weight: 500;
+  width: 100%;
+}
+
+.exitButton {
+  cursor: pointer;
+  border: none;
+  background-color: inherit;
+  font-size: 16px;
+	font-weight: 500;
+	color: #3b3636;
+  width: 100%;
 }
 
 .userMenu li + li {

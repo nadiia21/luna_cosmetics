@@ -26,9 +26,10 @@
 .input {
 	border: none;
 	padding: 8px 15px;
-	color: #a8a6a7;
+	color: #3b3636;
 	font-size: 14px;
 	height: 45px;
+  width: 100%;
 }
 
 .signupButton {
@@ -53,6 +54,32 @@
 .loginLink {
 	font-weight: 700;
 	color: #0d0c0c;
+}
+
+.errorMessage {
+	position: fixed;
+	top: 50%;
+	right: 50%;
+  transform: translate(50%);
+	background-color: #3b3636;
+	color: white;
+	padding: 10px 20px;
+	border-radius: 5px;
+	z-index: 1000;
+	transition: opacity 0.5s;
+}
+
+.successMessage {
+	position: fixed;
+	top: 50%;
+	right: 50%;
+  transform: translate(50%);
+	background-color: #3b3636;
+	color: white;
+	padding: 10px 20px;
+	border-radius: 5px;
+	z-index: 1000;
+	transition: opacity 0.5s;
 }
 
 @media (max-width: 640px) {
