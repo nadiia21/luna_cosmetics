@@ -1,10 +1,40 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styles from '../Styles/Footer.css';
 
 const Footer = () => {
-	const handleSubmit = (event) => {
+	const [toastMessage, setToastMessage] = useState('');
+
+	const handleSubmit = async (event) => {
 		event.preventDefault();
-		event.target.reset();
+		const formData = new FormData(event.target);
+		const data = {
+			name: formData.get('name'),
+			email: formData.get('email'),
+			message: formData.get('message'),
+		};
+
+		try {
+			const response = await fetch('http://localhost:3000/api/contacts', {
+				method: 'POST',
+				headers: {
+					'Content-Type': 'application/json',
+				},
+				body: JSON.stringify(data),
+			});
+
+			if (response.ok) {
+				setToastMessage('Your message has been sent!');
+				event.target.reset();
+			} else {
+				console.error('Failed to send message');
+				setToastMessage('Failed to send your message. Please try again.');
+			}
+		} catch (error) {
+			console.error('Error:', error);
+			setToastMessage('Error sending message. Please try again.');
+		}
+
+		setTimeout(() => setToastMessage(''), 3000);
 	};
 
 	return (
@@ -15,21 +45,21 @@ const Footer = () => {
 				<form onSubmit={handleSubmit} className={styles.contactsForm}>
 					<input
 						className={styles.contactsItems}
-						name="user_name"
+						name="name"
 						type="text"
 						placeholder="Name"
 						required
 					/>
 					<input
 						className={styles.contactsItems}
-						name="user_email"
+						name="email"
 						type="email"
 						placeholder="Email"
 						required
 					/>
 					<textarea
 						className={styles.contactsItems}
-						name="user_message"
+						name="message"
 						placeholder="Message"
 						required
 					></textarea>
@@ -73,6 +103,7 @@ const Footer = () => {
 					</div>
 				</div>
 			</div>
+			{toastMessage && <div className={styles.toast}>{toastMessage}</div>}
 		</footer>
 	);
 };

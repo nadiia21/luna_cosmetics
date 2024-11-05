@@ -104,6 +104,19 @@
 	cursor: pointer;
 }
 
+.toast {
+	position: fixed;
+	top: 50%;
+	right: 50%;
+  transform: translate(50%);
+	background-color: #3b3636;
+	color: white;
+	padding: 10px 20px;
+	border-radius: 5px;
+	z-index: 1000;
+	transition: opacity 0.5s;
+}
+
 @media (min-width: 641px) and (max-width: 1024px) {
 	.contactsContent {
 		grid-template-columns: repeat(6, 1fr);
