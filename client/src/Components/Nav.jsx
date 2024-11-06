@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import styles from '../Styles/Nav.css';
 import shopIcon from '../Images/icon-shop.svg';
 import userIcon from '../Images/icon-user.svg';
@@ -13,6 +13,7 @@ const Nav = () => {
 	const [isAuthenticated, setIsAuthenticated] = useState(() => {
 		return localStorage.getItem('isAuthenticated') === 'true';
 	});
+	const navigate = useNavigate();
 
 	const handleMouseEnter = () => {
 		setIsOpen(true);
@@ -36,6 +37,7 @@ const Nav = () => {
 	const handleLogout = () => {
 		setIsAuthenticated(false);
 		localStorage.removeItem('isAuthenticated');
+		navigate('/');
 	};
 
 	useEffect(() => {

@@ -60,6 +60,32 @@
 	height: 45px;
 }
 
+.errorMessage {
+	position: fixed;
+	top: 50%;
+	right: 50%;
+  transform: translate(50%);
+	background-color: #3b3636;
+	color: white;
+	padding: 10px 20px;
+	border-radius: 5px;
+	z-index: 1000;
+	transition: opacity 0.5s;
+}
+
+.successMessage {
+	position: fixed;
+	top: 50%;
+	right: 50%;
+  transform: translate(50%);
+	background-color: #3b3636;
+	color: white;
+	padding: 10px 20px;
+	border-radius: 5px;
+	z-index: 1000;
+	transition: opacity 0.5s;
+}
+
 .editProfileButton {
 	background-color: #3b3636;
 	border: 2px solid #3b3636;

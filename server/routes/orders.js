@@ -3,7 +3,7 @@ const router = express.Router();
 const Order = require('../models/order');
 
 router.post('/', async (req, res) => {
-  console.log("Отримані дані для замовлення:", req.body);
+  console.log("Received data for the order:", req.body);
   try {
     const newOrder = new Order({
       fullName: req.body.fullName,
@@ -17,8 +17,8 @@ router.post('/', async (req, res) => {
     const savedOrder = await newOrder.save();
     res.status(201).json(savedOrder);
   } catch (error) {
-    console.error("Помилка збереження замовлення:", error);
-    res.status(500).json({ message: "Помилка збереження замовлення", error: error.message });
+    console.error("Order saving error:", error);
+    res.status(500).json({ message: "Order saving error", error: error.message });
   }
 });
 

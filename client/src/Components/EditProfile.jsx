@@ -3,14 +3,52 @@ import styles from '../Styles/EditProfile.css';
 
 const EditProfile = () => {
 	const [fullName, setFullName] = useState('');
-	const [email, setEmail] = useState('');
-	const [password, setPassword] = useState('');
+	const [oldEmail, setOldEmail] = useState('');
+	const [newEmail, setNewEmail] = useState('');
+	const [newPassword, setNewPassword] = useState('');
 	const [confirmPassword, setConfirmPassword] = useState('');
+	const [oldPassword, setOldPassword] = useState('');
 	const [profileImage, setProfileImage] = useState(null);
+	const [errorMessage, setErrorMessage] = useState('');
+	const [successMessage, setSuccessMessage] = useState('');
 
-	const handleSubmit = (e) => {
+	const handleSubmit = async (e) => {
 		e.preventDefault();
-		console.log('Full Name:', fullName, 'Email:', email, 'Password:', password);
+
+		if (newPassword !== confirmPassword) {
+			setErrorMessage("Passwords don't match!");
+			setTimeout(() => setErrorMessage(''), 3000);
+			return;
+		}
+
+		const data = {
+			fullName,
+			oldEmail,
+			newEmail,
+			newPassword,
+			profileImage,
+			oldPassword,
+		};
+
+		try {
+			const response = await fetch('http://localhost:3000/api/auth/update', {
+				method: 'POST',
+				headers: { 'Content-Type': 'application/json' },
+				body: JSON.stringify(data),
+			});
+
+			const result = await response.json();
+			if (response.ok) {
+				setSuccessMessage('Profile updated successfully!');
+				setTimeout(() => setSuccessMessage(''), 3000);
+			} else {
+				setErrorMessage(result.error || 'Something went wrong!');
+				setTimeout(() => setErrorMessage(''), 3000);
+			}
+		} catch (error) {
+			setErrorMessage('Error updating profile. Please try again.');
+			setTimeout(() => setErrorMessage(''), 3000);
+		}
 	};
 
 	const handleImageChange = (e) => {
@@ -24,6 +62,10 @@ const EditProfile = () => {
 	return (
 		<div className={styles.editProfileContainer}>
 			<h2 className={styles.editProfileTitle}>Edit Profile</h2>
+			{errorMessage && <p className={styles.errorMessage}>{errorMessage}</p>}
+			{successMessage && (
+				<p className={styles.successMessage}>{successMessage}</p>
+			)}
 			<form onSubmit={handleSubmit} className={styles.editProfileForm}>
 				<div className={styles.profileImageContainer}>
 					{profileImage ? (
@@ -61,23 +103,44 @@ const EditProfile = () => {
 				<div className={styles.inputGroup}>
 					<input
 						type="email"
-						id="email"
+						id="oldEmail"
 						className={styles.input}
-						value={email}
-						onChange={(e) => setEmail(e.target.value)}
-						placeholder="Email"
+						value={oldEmail}
+						onChange={(e) => setOldEmail(e.target.value)}
+						placeholder="Old email"
+						required
+					/>
+				</div>
+				<div className={styles.inputGroup}>
+					<input
+						type="email"
+						id="newEmail"
+						className={styles.input}
+						value={newEmail}
+						onChange={(e) => setNewEmail(e.target.value)}
+						placeholder="New email"
 						required
 					/>
 				</div>
 				<div className={styles.inputGroup}>
 					<input
 						type="password"
-						id="password"
+						id="oldPassword"
 						className={styles.input}
-						value={password}
-						onChange={(e) => setPassword(e.target.value)}
-						placeholder="Password"
+						value={oldPassword}
+						onChange={(e) => setOldPassword(e.target.value)}
+						placeholder="Old password"
 						required
+					/>
+				</div>
+				<div className={styles.inputGroup}>
+					<input
+						type="password"
+						id="newPassword"
+						className={styles.input}
+						value={newPassword}
+						onChange={(e) => setNewPassword(e.target.value)}
+						placeholder="New password"
 					/>
 				</div>
 				<div className={styles.inputGroup}>

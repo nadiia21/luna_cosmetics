@@ -13,7 +13,7 @@ router.post('/add', (req, res) => {
 		cart.push({ productId, name, price, image, quantity: 1 });
 	}
 
-	res.status(200).json({ message: 'Продукт додано до кошика', cart });
+	res.status(200).json({ message: 'Product added to cart', cart });
 });
 
 router.get('/', (req, res) => {
@@ -22,7 +22,7 @@ router.get('/', (req, res) => {
 
 router.delete('/clear', (req, res) => {
 	cart = [];
-	res.status(200).json({ message: 'Кошик очищено' });
+	res.status(200).json({ message: 'The basket has been cleaned' });
 });
 
 module.exports = router;

@@ -3,7 +3,7 @@ const router = express.Router();
 const Contact = require('../models/contact');
 
 router.post('/', async (req, res) => {
-  console.log("Отримані дані для контакту:", req.body);
+  console.log("Received contact data:", req.body);
   try {
     const newContact = new Contact({
       name: req.body.name,
@@ -14,8 +14,8 @@ router.post('/', async (req, res) => {
     const savedContact = await newContact.save();
     res.status(201).json(savedContact);
   } catch (error) {
-    console.error("Помилка збереження контакту:", error);
-    res.status(500).json({ message: "Помилка збереження контакту", error: error.message });
+    console.error("Contact saving error:", error);
+    res.status(500).json({ message: "Contact saving error", error: error.message });
   }
 });
 

@@ -60,4 +60,36 @@ router.post('/login', async (req, res) => {
   res.status(200).json({ message: 'Logged in successfully' });
 });
 
+router.post('/update', async (req, res) => {
+  const { oldEmail, newEmail, newPassword, fullName, oldPassword } = req.body;
+
+  try {
+    const user = await User.findOne({ email: oldEmail });
+
+    if (!user) {
+      return res.status(400).json({ error: 'Invalid old email.' });
+    }
+
+    const isMatch = await bcrypt.compare(oldPassword, user.password);
+    if (!isMatch) {
+      return res.status(400).json({ error: 'Old password is incorrect.' });
+    }
+
+    user.fullName = fullName || user.fullName;
+    user.email = newEmail || user.email;
+    if (newPassword) {
+      user.password = await bcrypt.hash(newPassword, 10);
+    }
+
+    await user.save();
+
+    res.status(200).json({ message: 'Profile updated successfully!' });
+
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: 'Internal server error' });
+  }
+});
+
+
 module.exports = router;
