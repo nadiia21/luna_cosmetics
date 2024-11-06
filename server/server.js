@@ -13,9 +13,6 @@ mongoose.connect(process.env.DB_CONNECT)
 app.use(cors());
 app.use(express.json());
 
-const postRoute = require('./routes/posts');
-app.use('/api/posts', postRoute);
-
 const productRoute = require('./routes/products');
 app.use('/products', productRoute);
 
